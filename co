@@ -1,0 +1,33 @@
+html para botao 
+
+<button id="theme-toggle" class="botao-principal">Alternar Tema</button>
+
+JAVA:
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            // Função para aplicar o tema salvo no localStorage
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    body.classList.add('dark-theme');
+                } else {
+                    body.classList.remove('dark-theme');
+                }
+            };
+
+            // Aplica o tema salvo no carregamento da página
+            const savedTheme = localStorage.getItem('theme');
+            applyTheme(savedTheme || 'light'); // Padrão é tema claro
+
+            // Alterna o tema ao clicar no botão
+            themeToggleBtn.addEventListener('click', () => {
+                body.classList.toggle('dark-theme');
+                const newTheme = body.classList.contains('dark-theme') ? 'dark' : 'light';
+                localStorage.setItem('theme', newTheme);
+            });
+        });
+
+
